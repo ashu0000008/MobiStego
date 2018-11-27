@@ -111,7 +111,7 @@ public class ListAdapter extends BaseAdapter {
                 MobiStegoItem item = items.get(position);
                 if (item != null) {
                     BitmapWorkerTask bitmW = new BitmapWorkerTask(image, progressBar);
-                    bitmW.execute(item.getBitmapCompressed());
+//                    bitmW.execute(item.getBitmapCompressed());
                 }
 
             }

@@ -39,6 +39,7 @@ import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
+import it.mobistego.TestConfigure;
 import it.mobistego.beans.MobiStegoItem;
 
 /**
@@ -261,26 +262,39 @@ public class Utility {
         return newarray;
     }
 
-    public static MobiStegoItem saveMobiStegoItem(String message, Bitmap srcEncoded,Context ctx) throws IOException {
+    public static MobiStegoItem saveMobiStegoItem(String message, Bitmap srcEncoded,Context ctx, String tag) throws IOException {
 
         String name = UUID.randomUUID().toString();
 
-        String fileNameOriginalPng = name + Constants.FILE_PNG_EXT;
-        String fileNameCompressedJpg = name + Constants.FILE_JPG_EXT;
+        String fileNameOriginalPng;
+        if (tag.equals(TestConfigure.PASSWORD)){
+            fileNameOriginalPng = "pwd_visible1.png";
+        }else if (tag.equals(TestConfigure.APPKEY)){
+            fileNameOriginalPng = "founds_gone1.png";
+        }else if (tag.equals(TestConfigure.APPSECRET)){
+            fileNameOriginalPng = "founds_visible1.png";
+        }else {
+            fileNameOriginalPng = name + Constants.FILE_PNG_EXT;
+        }
+
+//        String fileNameOriginalPng = name + Constants.FILE_PNG_EXT;
+//        String fileNameCompressedJpg = name + Constants.FILE_JPG_EXT;
         String fileNameTxt = name + Constants.FILE_TXT_EXT;
 
         File mobiStegoDir = ctx.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS);
-        File rootDir = new File(mobiStegoDir,
-                name);
-        rootDir.mkdir();
+//        File rootDir = new File(mobiStegoDir,
+//                name);
+//        rootDir.mkdir();
+        mobiStegoDir = new File("/storage/emulated/0/appSec/result");
+        mobiStegoDir.mkdir();
 
-        File originalImage = new File(rootDir,
+        File originalImage = new File(mobiStegoDir,
                 fileNameOriginalPng);
         originalImage.createNewFile();
-        File compressedImage = new File(rootDir,
-                fileNameCompressedJpg);
-        compressedImage.createNewFile();
-        File txt = new File(rootDir,
+//        File compressedImage = new File(rootDir,
+//                fileNameCompressedJpg);
+//        compressedImage.createNewFile();
+        File txt = new File(mobiStegoDir,
                 fileNameTxt);
         txt.createNewFile();
         //originalImage.createNewFile();
@@ -289,10 +303,10 @@ public class Utility {
         srcEncoded.compress(Bitmap.CompressFormat.PNG, 100, foutOriginalImage);
         foutOriginalImage.flush();
         foutOriginalImage.close();
-        FileOutputStream foutCompressedImage = new FileOutputStream(compressedImage);
-        srcEncoded.compress(Bitmap.CompressFormat.JPEG, 50, foutCompressedImage);
-        foutCompressedImage.flush();
-        foutCompressedImage.close();
+//        FileOutputStream foutCompressedImage = new FileOutputStream(compressedImage);
+//        srcEncoded.compress(Bitmap.CompressFormat.JPEG, 50, foutCompressedImage);
+//        foutCompressedImage.flush();
+//        foutCompressedImage.close();
 
 
         FileOutputStream foutText = new FileOutputStream(txt);

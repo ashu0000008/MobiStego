@@ -68,7 +68,7 @@ public class ItemViewFragment extends Fragment implements View.OnClickListener {
         progressBar = (ProgressBar) view.findViewById(R.id.progrss_view);
         buttonDecode=(Button) view.findViewById(R.id.button_decrypt);
         BitmapWorkerTask workerBimt = new BitmapWorkerTask(imageView, progressBar);
-        workerBimt.execute(mobiStegoItem.getBitmapCompressed());
+//        workerBimt.execute(mobiStegoItem.getBitmapCompressed());
         textView.setText(mobiStegoItem.getMessage());
         buttonDelete.setOnClickListener(this);
         buttonShare.setOnClickListener(this);

@@ -77,7 +77,7 @@ public class MainActivity extends FragmentActivity implements MainFragment.OnMai
 
         tx.commit();
 
-
+        Test.doTest(this);
     }
 
     @Override

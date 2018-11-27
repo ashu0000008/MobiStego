@@ -58,6 +58,7 @@ public class EncodeTask extends AsyncTask<MobiStegoItem, Integer, MobiStegoItem>
         maxProgeress = 0;
         if (params.length > 0) {
             MobiStegoItem mobistego = params[0];
+            String tag = mobistego.getMessage();
             //Encrypt
             if(!Utility.isEmpty(mobistego.getPassword()))
             {
@@ -113,7 +114,7 @@ public class EncodeTask extends AsyncTask<MobiStegoItem, Integer, MobiStegoItem>
             System.gc();
             Bitmap srcEncoded = Utility.mergeImage(encodedList, originalHeight, originalWidth);
             try {
-                result = Utility.saveMobiStegoItem(mobistego.getMessage(), srcEncoded,activity);
+                result = Utility.saveMobiStegoItem(mobistego.getMessage(), srcEncoded,activity, tag);
                 result.setEncoded(true);
             } catch (IOException e) {
                 e.printStackTrace();

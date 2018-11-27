@@ -170,7 +170,7 @@ public class ApplicationTest {
         Assert.assertEquals(result, message);
         MobiStegoItem m;
         try {
-            m = Utility.saveMobiStegoItem(message, srcEncoded,getContext());
+            m = Utility.saveMobiStegoItem(message, srcEncoded,getContext(), "");
         } catch (IOException e) {
             e.printStackTrace();
             Assert.fail();
